@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Vis & Society Assignment 2</title>
+	<link rel="stylesheet" href="https://vis-society.github.io/assignments/report.css" />
+</head>
+
+<body>
+	<header>
+		<h1>
+			<small>Assignment 2</small>
+			Exploratory Data Analysis
+		</h1>
+
+		<p>
+			<strong>Nicole Pagane</strong> — <em>npagane@mit.edu</em>
+		</p>
+	</header>
+	<main>
+		<section>
+			<h2>Subtheme: Making a case for upzoning</h2>
+
+			<h3>Overall Analysis Questions</h3>
+			<ol>
+				<li>In the <a href=" https://www.bostonindicators.org/reports/report-detail-pages/exclusionary-by-design">"Exclusionary by Design" report</a>, it claimed that zoning laws were constructed in a way exclude poor and/or Black people. How do single versus multi-family zoned areas vary in wealth and race today?</li>
+				<li>From my own experience of living in different cities, it seems that multi-family zoned areas typically tend to be more diverse. What are the residential demographics (racial, economic, age, etc.) in cities around Greater Boston?</li>
+				<li>How do the above residential demographics correlate with each other?</li>
+				<li>In the <a href="https://www.washingtonpost.com/dc-md-va/2023/10/20/missing-middle-housing-comic/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzA4MzE4ODAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzA5NzAxMTk5LCJpYXQiOjE3MDgzMTg4MDAsImp0aSI6IjE3M2Y3NDQ4LTE0MmItNDg5YS04ZTEwLTYwMzgyYzkyYWYyZCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9kYy1tZC12YS8yMDIzLzEwLzIwL21pc3NpbmctbWlkZGxlLWhvdXNpbmctY29taWMvIn0.BUpoD-aCmwQFGUCPfwgIxpyDEBBWeK55QC82usrsZes">"missing middle" reading</a>, middle housing in Boston was reported to be built around commuter rails. Where are commuter centers around Greater Boston? </li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Discoveries & Insights</h2>
+
+			<figure>
+				<img src="pop.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				Here is a barplot of the Greater Boston city populations. The three most populated citie are Boston, Cambridge, and Quincy. 
+				This reassures me that so far the data is reliable, since those are indeed the most populous cities in the Greater Boston area and because there are no zero or negative population values.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="popVShh.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				Here I am showing a scatter plot of the number of households from the 2014-2018 Blocks Groups income data versus the Greater Boston city populations according to the US 2010 census.
+				The line plots y=x. In the cities with lower populations, we can see divergence from the expected trend (lying parallel to the y=x line). This is due to stochastic sampling of lower population areas. 
+				I have colored the points by transforming the data to produce a new measure: population divided by households. The values lying under the line (where we don't see stochastic counting issues) are above 1,
+				while the numbers above the line (with stochastic counting isssues) are below 1. I will continue to explore this phenomenon in the next plot.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="popVShh_2010.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+					Here I am showing a scatter plot of the number of households from the US 2010 census versus the Greater Boston city populations according to the US 2010 census.
+					The line still plots y=x. In contrast to what we saw before, all the points here lie below the line and are parallel to it. I still have the points colored by the same measure
+					as the previous plot. This is just to show what we would have gotten/expected if the two data sources were consistent and compatible.
+					I will continue to explore this phenomonen in the next plot.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="single_family_VS_hh_2010.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+					Here I am showing a scatter plot of the number of households from the US 2010 census versus the single-family zoning percentage of that city's households.
+					This line shows a cutoff of 200 households to be where we start to see stochastic noise from low counting when trying to combine the census and income datasets.
+					I still have the points colored by the same measure as the previous plots. I want to highlight that there doesn't seem to be any major trends between household numbers
+					and single-family zoning percentage if you look above the 200 household cutoff. Under this cutoff, you see extreme values (either mostly multi-family or mostly single-family
+					zoning) that arises due to low households to begin with. For the rest of this analysis, I will only show plots from the data after filtering out these abberant data points. 
+					The filter applied here is taking all the values above 1 for the new measure accounting for population divided by household (as detailed in the second figure in this report.)
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="bars.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto" />
+				<figcaption>
+				To answer my first question, I made boxplots depicting how residential demogrpahics differ between multi-family and single-family zoned areas. To create these boxplots I needed to tranform the data to define new measures.
+				First, I found the percentage of white and BIPOC (herein defined as just Black and indigenous populations) residents per city from the raw count information within the original dataset. This was simple enough to do. 
+				To find the typical household size, I computed a weighted mean from the original binned count data across the non-family and family households varying from 1 to 7+ occupants. For the average income per resident measure, 
+				I did a similar procedure of computing the weighted mean of the provided binned houeshold income brackets; and then dividing by the typical household size found earlier. Thus, this measure corresponds to the typical household income 
+				per resident. For the income bins, I took the leftmost values of the spans (since the data is unbounded above $200K). Lastly, I also computed the weighted mean for the binned ages. For the age bins, I took the rightmost value for the smallest bin, 
+				the center value of the middle bin, and the leftmost value of the highest bin. Thus, all of the computed weighted means are just approximations of the true population averages. 
+
+				It seems that average residential white percentage, average household income per resident, and average age do not seem to differ much across the Greater Boston city ares with different zoning policies. However, the BIPOC precentage does
+				seem to be right-skewed in multi-family zoning areas, indicating that there may be more Black and indigenous people living in multi-family zoned areas. Thus, the historical exclusion of Black people as described in  
+				the <a href=" https://www.bostonindicators.org/reports/report-detail-pages/exclusionary-by-design">"Exclusionary by Design"</a> report is so far consistent with Greater Boston data of today. However, we do not see any signs of 
+				income differences per resident between multi-family and single-family zoned areas. A better metric would be to look at wealth and not income since people in multi-family zones are probably more rent-burdened then those in single-family zoned areas.
+				Thus, there may still be remenants of financial exlusion from the historical zoning practices as described in the report; however, the data as it currently stands cannot try to address this. 
+
+				In addition, the only other residential demographic computed here that differs between single and multi-family zoned areas is average household size. On average, there seem to be larger households in single-family zones, and more variability in
+				multi-family zones. 
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="age_VS_hh.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				To further explore my first question (specifically the observation of household size differences in multi versus single-family zones), I decided to create a scatter plot of average household size versus average age of residents within Greater Boston cities. There seems to be 
+				an inverse power law between these two measures, as shown with the best fit line. This intuitively makes because younger residents either have families or live with roommates, while older residents tend to be empty-nesters (sometimes even living in retirement communities). After a quick
+				Google search, it appears that Milton (the Greater Boston city with the oldest residents on average) has numerous retirement community options; thus supporting this observation.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="map_single_family.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				To begin to answer my second question, I map the single-family zoning percentage within a city across the Greater Boston area. In general, you see that the most populous cities 
+				(such as Boston and Cambridge as shown in the first figure) have very low (actually 0%) single-family zoning. You can see suburbs of Boston, AKA the most proximal surrounding cities, encircling
+				Boston. There then seems to be an additional outer ring of primarily multi-family zoning cities. In the future, I plan to test/address this observation by plotting the radial distances of Greater Boston cities
+				relative to Boston and then comparing that to their single-family zoning percentage. In the next few figures, I will explore how single-family zoning percentages correlate with residential demographics across these cities. 
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="map_perWhite.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				To continue to address my second question, specifically how race correponds to zoning policies, I map the residential white percentage within a city across the Greater Boston area. To do this, I simply had to compute a new measure of white 
+				residential counts divided by total population within a city. In general, you see that the least white cities are the ones closest to Boston, and that they become progressively more white as you increase in radial distance from Boston.
+				This is similar to my previous observation that single-family percentages seem to obey as some function of radial distance from Boston. In future analyses, I plan to follow up on this observation.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="map_averageincomePerHH.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+					To continue to address my second question, specifically how wealth correponds to zoning policies, I map the average income per resident within a city across the Greater Boston area. To do this, I used the measure that I previously
+					computed as detailed in the fifth figure of this report. Similar to the cavets that I mentioned above, we are only looking at income (not taking into account wealth or rent-burden). Regardless, we interestingly do not see any radial patterns, but 
+					instead see two standout cities: Milton and Wellesley. In the sixth figure, we talked about Milton having the oldest residents; thus their incomes may be high due to retirement pensions and/or unretired older residents are likely advanced within
+					their careers/salaries. Upon a quick Google search, Wellesley is documented to be one of the richest towns in the US, so our mapped observation is consistent with this fact. Noticabely, there is a wide distribution of incomes across the Greater Boston area
+					(estimated to be from $20K to $70K (but keep in mind this is just a gross estimation from the census data as detailed in the fifth figure)). This $50k annual difference is consistent with the notion that there is substantial wealth inequality in the greater Boston area. 
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="white_perc_VS_10kincome.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				To address my third question, I now instead create a scatter plot to look at correlations between income and race within the Greater Boston area. As mentioned several times, we cannot directly look at metrics of wealth with this dataset, so 
+				instead I will look at the percentage of households that receive less than $10K per year. The 2010 poverty line was around $10K, so this metric will enable us to look at the correlation between poverty rates and whiteness. 
+				There seems to be a strong negative correlation (as also demonstrated with the best fit line) between residential white percentage and percentage of residents making less than $10K per year. The size of the markes indiciats the total population within that 
+				Greater Boston city. 
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="white_perc_VS_200kincome.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+					To address my third question, I now create a scatter plot to look at the correlations between residential white percentage and percentage of residents making more than $200K per year. Regardless of cumulative wealth, I imagine
+					it would be unlikely that households making above $200K are rent-burdened or unable to accumulate wealth at some point before retirement. Similar to before, we find a postive relationship between high income and whiteness of a city (albeit not as 
+					strong of a relationship as the previous figure).
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="single_family_vs_avgIncome.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+					To address my third question, I now create a scatter plot of average income per houshold (computed as a weighted mean detailed in the fifth figure) versus single-family zoning percentage of a city.
+					There does not seem to be any strong trends between these two dimensions. However, if you binned the data as above and below 50% single-family zoning, there does seem to be some subtle differences in average income per household.
+					I will follow up on this observation in the future by transforming the data by binning or performing multiple correlations and/or multivariable regressions.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="map_MBTA.png" alt="Sorry I didn't have time to add. I can add later upon request." width="100%" height="auto"/>
+				<figcaption>
+				To address my fourth question, I map the MBTA connection options (0/teal if no or 1/blue if yes). Our map seems to be in agreement with the <a href="https://www.washingtonpost.com/dc-md-va/2023/10/20/missing-middle-housing-comic/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzA4MzE4ODAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzA5NzAxMTk5LCJpYXQiOjE3MDgzMTg4MDAsImp0aSI6IjE3M2Y3NDQ4LTE0MmItNDg5YS04ZTEwLTYwMzgyYzkyYWYyZCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9kYy1tZC12YS8yMDIzLzEwLzIwL21pc3NpbmctbWlkZGxlLWhvdXNpbmctY29taWMvIn0.BUpoD-aCmwQFGUCPfwgIxpyDEBBWeK55QC82usrsZes">"missing middle" reading</a>.
+				This is seen through Milford, Hudson, and Bolton having no MBTA connections and high single-family zoning percentages. I am ignoring the city of Boston in this map since presumably it is marked as not having connections by convention. 
+				</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Summary</h2>
+
+			<p>In summary, the data seems mostly clean and well curated! This is great news because this will make using it in the future much easier. I am starting to confirm some of the information gleaned from the background readings in addition
+				to my own intutions gained from lived experiences in cities. Interestingly, there are some surprising observations such as multi-family versus single-family zoning having nearly the same
+				income/white percentage/ages. I think this exploratory analysis practice made me confident and excited about this dataset, but there are definitely several transformations/analyses that I am looking forward to conduct in the future!  </p>
+		</section>
+	</main>
+</body>
+</html>
