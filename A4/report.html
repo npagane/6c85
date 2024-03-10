@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Vis & Society Assignment 3</title>
+	<link rel="stylesheet" href="https://vis-society.github.io/assignments/report.css" />
+</head>
+
+<body>
+	<header>
+		<h1>
+			<small>Assignment 4</small>
+			Persuasive or Deceptive Visualization?
+		</h1>
+
+		<p>
+			<strong>Nicole Pagane</strong> — <em>npagane@mit.edu</em>
+		</p>
+	</header>
+
+	<main>
+    <h2>Proposition: The NYPD has reduced its use of force over time and has/does not use force in a racially biased manner. </h2>
+
+		<section>
+      <h3>FOR the Proposition</h3>
+
+      <figure>
+				<img src="for.png" alt="" />
+				<figcaption>
+					NYPD total complaints (blue) and force complaints (gold) are depicted over time. The inset plot shows how the proportion of force complaints among the total complaints are decreasing over time.
+					The spatial distribution among NYC precints of proportional force complaints is shown, depicting no spatial/racial biases. The pie charts depict the proportion of force complaints made by people of color
+					in the year 2000 (left) and 2020 (right).
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Decisions and Rationale:
+			</p>
+
+			<ul>
+				<li>I used the definition that the NYPD uses for "force" allegations. This is to be consistent with their internal definitions but also to separate out 
+					excessive violent force from less severe other uses of force. This is also the easiest way to use the data without having to parse through too many additional 
+					fields within the dataset.  <b>deceptive/earnest score: 1</b></li>
+				<li>I used noninflammatory colors like blues, golds, and greens so as not to invoke passionate responses. Additionally I adjusted the aspect ratio of the plot
+					of complaints over time, so that it wouldn't seem like the complaints are not so high in recent years. I did both of these things to not provoke the audience. 
+					 <b>deceptive/earnest score: -0.5</b>
+				</li>
+				<li>For the map of NYC precints, I plot the proportions of force allegations in each precint instead of the raw numbers. The raw numbers show that people of color 
+					(particilarly within precincts of color) are the most frequent complainants of use of force. I chose to represent the proportion of force complaints instead of the 
+					raw counts not just because this map argues for the proposition, but also because it highlights that there is not disproportionate force usage in some precincts over others.
+					This does indeed support the proposition but in a more subtle way, and does not acknowledge more major trends in the data.  <b>deceptive/earnest score: -1</b>
+				</li>
+				<li>
+					I kept in / cherrypicked the year 2000 to highlight that there were no use of force complaints from people of color. This is because the data for 2020 is only from the month of 
+					January. Even though there is a trend that use of force allegations have been decreasing over time, I decided to cherry pick a data point that more dramatically supports 
+					the propostition. I also did this because most people will recognize that 2020 was an exceptional year with COVID19 and the Black Lives Matter uprising over the summer; thus 
+					maybe the audience will except the year 2020 to be an outlier anyway (not even beceause of my improper handling of it). <b>deceptive/earnest score: -2</b>
+				</li>
+				<li>
+					I decided to annotate the map of NYC precincts by circling where communities of color live. I did this to of course slightly warp how to draw the boundaries to my propositions's benefit. Although it did
+					not have a huge effect since the underlying Choropleth map was alaready transformed in way to promote spatial uniformity, I wanted to practice utilizing/being aware of other deceptive
+					tactics when making visualiations. <b>deceptive/earnest score: -1</b>
+				</li>
+				<li>
+					I incorporated data sources into the visualization to acknowledge where I was able to source the geospatial information in addition to the ProPublica data. I do this because it
+					provides legitimacy to the visualzition and thus would make the audience more likely to trust how I did the analysis. <b>deceptive/earnest score: 0</b>
+				</li>
+			</ul>
+    </section>
+
+    <section>
+      <h3>AGAINST the Proposition</h3>
+
+      <figure>
+				<img src="againt.png" alt="" />
+				<figcaption>
+					NYPD total complaints (black) and "force" complaints (red) are depicted over time. "Force" complaints are those explictly defined by the NYPD in addition to allegations involving guns, frisking, or threats of violence.
+					 The inset plot shows how the proportion of "force" complaints among the total complaints are not changing over time if you use this extended definition of "force".
+					The spatial distribution among NYC precints of force complaints is shown, depicting a strong racial bias between force complaints and communities of color. 
+				</figcaption>
+			</figure>
+
+			<p>
+				Design Decisions and Rationale:
+			</p>
+
+			<ul>
+				<li>I extended the definition that the NYPD uses for "force" allegations. I did this because I noticed how certain topics seem to appear/transform/disappear in the dataset over time. For example, the reason for
+					police contact involving "stop-quesiton-and-frisk" decreased over time but "PD suspected C/V of violation/crime - street" seemed to rise in its stead. 
+					Stop-question and stop-quesiton-and-frisk was a program in NYC inspired by Broken Windows Theory that was very popular in NYC from 1980-2013. In 2013 stop-question-and-frisk was
+					deemed unconstitutional, and thus the program ended. However, during the stop-question-and-frisk era, multiple studies highlighted how police dispraportionately stopped and harassed people of color. 
+					To incorporate this legitamized (and later deemed illegal) use of power and physical force, I incorporate any allegation with "frisk" into the "force" allegation category. I do this in addition to any 
+					allegation involving an officer using a gun or threatening violence or force. While I do think there is a distinction between violent force (i.e. police brutality) and less severe forms of force
+					(i.e. police aggression / absuse of power), I think it's a grey area. Thus, to ensure that we aren't downplaying physical aggression by the NYPD, I use this extended defition of force for this analysis. I think the topleft
+					most subplot highlights this point: that the grey area (here depicted as the grey line) seems constant while explicit use of force (blue) is decreasing while extended use of force (red) is increasing. Additionally, I also highlight 
+					this design choice as an annotation on the main plot to be transparent to the audience.
+					 <b>deceptive/earnest score: 2</b></li>
+				<li>I used more inflammatory colors like reds, blacks, and oranges to invoke potential passionate responses. Additionally I adjusted the aspect ratio and inverted the y-axis of the plot
+					of complaints over time, so that it higlights how high complaints have risen in recent years. I did both of these things to provoke the audience. 
+					 <b>deceptive/earnest score: -0.5</b>
+				</li>
+				<li>
+					I decided to have two plots of NYC precints: (1) to show precinct racial composition and (2) to show force allegation complaints. I do this so the audience can understand where different communities in NYC live, 
+					as a refernce for any potential spatial/racial biases. I decided not to annotate the neighborhoods myself (as before) to be more transparent.  <b>deceptive/earnest score: 0</b>
+				</li>
+				<li>For the second map of NYC precints, I plot the raw numbers of force allegations in each precint instead of the proportion. The raw numbers show that people of color 
+					(particilarly within precincts of color) are the most frequent complainants of use of force. Although it is true that communities of color do have the highest records of complaints
+					agaisnt use of force, these same communtities also have the highest complaints overall. So rather than being specifically an issue of force, it seems there are equal numbers of allegations of abuse of power, 
+					discourtesy, and offensive language. However, these allegations are less important to the specific proposition, so I ignore them in the visualization. 
+					  <b>deceptive/earnest score: -0.5</b>
+				</li>
+				<li>
+					I incorporated data sources into the visualization to acknowledge where I was able to source the geospatial information in addition to the ProPublica data. I do this because it
+					provides legitimacy to the visualzition and thus would make the audience more likely to trust how I did the analysis. <b>deceptive/earnest score: 0</b>
+				</li>
+			</ul>
+    </section>
+
+    <section>
+      <h2>Final Reflection</h2>
+	  <p>
+		My design process was very similar for my "FOR" and "AGAINST" visualizations. I wanted them to be almost in discourse with each other to highlight how simple data definitions, transformations, and visual encoding choices can lead to opposite conclusions. It's kind of 
+		discomforting to think how similar both of my visualizations are but how they argue opposite things. Although I was slightly more deceptive overall with my "FOR" visualization, I did engage in some persuasive/deceptive tactics in my "AGAINST" side. Deception aside,
+		 I think the visuzaliations ultimately differed due to the data definition of "force". By extending the definition in the "AGAINST" visualization, I clearly remove the previous trend of decreasing force over time. I think my two visualizaitons will be accepted by the people
+		 who agree with defintions used within them; thus, I do not think I will persuade many people who disagree with this starting point (since the bulk of the argument stems from this major design choice). I found it difficult to engage with this assignment in any other way since it's hard 
+		 to argue for both for and against a proposition with one dataset unless there's some fundamental disagreement on definitions between the two sides. 
+	  </p>
+      <p>
+		Overall, I found this assignment to be challenging. First of all, when exploring the data in the "exploratory data analysis" stage, I kept finding myself prioritizing defining my proposition instead of  
+		exploring the data integrity/structure (which I of course still ultimately did through trying to define the proposition). I found it actually uncomfortable being deceptive, so most of the design process involved 
+		me either being directly earnest/transparent or being deceptive in a way that could be seen as a mistake rather than intentional. For example, when I kept in the 2020 datapoint for the "FOR" proposition, I knew that 2020 was truncated and thus should
+		be filtered out of the dataset, but I also knew that it would benefit my argument and that the audience would never know otherwise unless they looked into the metadata. Additionally, I plotted the map of propotions instead of raw counts of force complaints to again
+		support my proposition but also because what I did show is not technically wrong but just less important. Thus, my deception tended to be suboptimal choices that I could always feign ignorance to upon critique. I have no idea why I found that form of deception more comfortable.
+	  </p>
+	  <p>
+		After this assignment, I would define "ethical analysis and visualization”" as one that is transparent with its intentions and data transformations. I think it's fair game to subtly persuade your audience by invoking emotion through design choices (like how I did with the colors of the visual encodings),
+		but to make major assumptions / make major transformations of the data and not inform the audience can quickly lead to deception. For example, if I had to document how I cleaned/processed the data for the anlaysis, it would be much more difficult to cherry pick the 2020 year data since it would have been 
+		obviously questioned. Similarly, it would have been unethical to proceed with the analysis for my "AGAINST" visualization without acknowledging the data defintion extension of "force". In this way, I think transparency is a good way to ensure/promote ethical analyses. Thus, I would draw bounds between "acceptable"
+		vs "misleading" persuasive choices dependent on how transparent the visualizer is with their design process. The only persuasive tactics that I don't think need transparency are aesthetic choices that are intended to invoke different emotions in the audience. Like I said before, I think these are fair game and are 
+		"acceptable" forms of persuasion (even without the visualizer acknowledging these design choices).
+	  </p>
+    </section>
+	</main>
+</body>
+</html>
